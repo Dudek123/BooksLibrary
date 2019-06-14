@@ -1,0 +1,35 @@
+<template>
+	<div class="container">
+		<h1>${heading}</h1>
+		
+		<form submit.trigger = addBook()>
+			<label for="bookTitle">Book Title</label>
+			<input type="text" value.bind="bookTitle" placeholder="Book Title" class="u-full-width" id="bookTitle">
+			<label for="bookAuthor">Book Author</label>
+			<input type="text" value.bind="bookAuthor" placeholder="Book Author" class="u-full-width" id="bookAuthor">
+			<button type="submit" class="u-full-width">Add Book</button>
+		</form>
+		
+		<table class="u-full-width">
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Change availability</th>
+				<th>Delete</th>
+			</tr>
+			<tr repeat.for="book of books">
+            <td> ${book.title}</td>
+            <td> ${book.author}</td>
+            <td>
+                <button click.trigger="changeBookAvailability(book)">
+                    <span if.bind="book.isAvailable">Available</span>
+                    <span if.bind="!book.isAvailable">Unavailable</span>
+                </button>
+            </td>
+            <td>
+                <button click.trigger="deleteBook(book)">Delete</button>
+            </td>
+        </tr>
+		</table>
+	</div>
+</template>
